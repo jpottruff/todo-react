@@ -1,10 +1,16 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
 function App() {
-  const title = 'todo react'
   return (
-    <p>{title} works</p>
+    <div>
+      <h1 className="title">Todo List React</h1>
+      <ul className="todo-list">
+        <li>todo 1</li>
+        <li>todo 2</li>
+        <li>todo 3</li>
+      </ul>
+    </div>
   );
 }
 
