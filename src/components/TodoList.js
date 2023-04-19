@@ -1,12 +1,12 @@
 import React from "react";
 import "./TodoList.css";
 
-const TodoList = () => {
+const TodoList = (props) => {
   return (
     <ul className="todo-list">
-      <li>todo 1</li>
-      <li>todo 2</li>
-      <li>todo 3</li>
+      {props.items.map((item) => {
+        return <li key={item.id}>{item.text}</li>;
+      })}
     </ul>
   );
 };
