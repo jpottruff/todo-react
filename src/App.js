@@ -1,6 +1,7 @@
 import React from "react";
 import TodoList from "./components/TodoList/TodoList";
 import "./App.css";
+import NewTodoForm from "./components/NewTodoForm/NewTodoForm";
 
 function App() {
   const items = [
@@ -12,6 +13,7 @@ function App() {
   return (
     <div>
       <h1 className="title">Todo List React</h1>
+      <NewTodoForm />
       <TodoList items={items} />
     </div>
   );
