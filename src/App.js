@@ -1,20 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import TodoList from "./components/TodoList/TodoList";
 import "./App.css";
 import NewTodoForm from "./components/NewTodoForm/NewTodoForm";
 
 function App() {
-  const items = [
-    { id: "todo1", text: "eat apples" },
-    { id: "todo2", text: "bake bread" },
-    { id: "todo3", text: "walk dog" },
-  ];
+  const [todoItems, setTodoItems] = useState([]);
+
+  const addTodoHandler = async (newTodo) => {
+    setTodoItems((prevItems) => {
+      return prevItems.concat({
+        ...newTodo,
+        id: `${prevItems.length + 1}`, // * This obviously isn't realistic
+      });
+    });
+  };
 
   return (
     <div>
       <h1 className="title">Todo List React</h1>
-      <NewTodoForm />
-      <TodoList items={items} />
+      <NewTodoForm onAddTodo={addTodoHandler} />
+      <TodoList items={todoItems} />
     </div>
   );
 }

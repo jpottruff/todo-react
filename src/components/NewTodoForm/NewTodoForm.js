@@ -1,19 +1,24 @@
 import React, { useState } from "react";
 import "./NewTodoForm.css";
 
-const NewTodoForm = () => {
-  const [newItem, setNewItem] = useState("");
+const NewTodoForm = (props) => {
+  const [newItemText, setNewItemText] = useState("");
 
-  const textChangeHandler = (event) => setNewItem(event.target.value);
+  const textChangeHandler = (event) => setNewItemText(event.target.value);
 
-  const addTodoHandler = (event) => {
+  const submitTodoHandler = (event) => {
     event.preventDefault();
-    console.log(newItem);
+    const newTodo = {
+      id: undefined,
+      text: newItemText,
+    };
+    props.onAddTodo(newTodo);
+    setNewItemText("");
   };
 
   return (
-    <form onSubmit={addTodoHandler}>
-      <input value={newItem} onChange={textChangeHandler} type="text" />
+    <form onSubmit={submitTodoHandler}>
+      <input value={newItemText} onChange={textChangeHandler} type="text" />
       <button type="submit">Add Todo</button>
     </form>
   );
