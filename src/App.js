@@ -6,20 +6,26 @@ import NewTodoForm from "./components/NewTodoForm/NewTodoForm";
 function App() {
   const [todoItems, setTodoItems] = useState([]);
 
-  const addTodoHandler = async (newTodo) => {
+  const addTodoHandler = (newTodo) => {
     setTodoItems((prevItems) => {
       return prevItems.concat({
         ...newTodo,
-        id: `${prevItems.length + 1}`, // * This obviously isn't realistic
+        id: `${Date.now()}`, // * This obviously isn't realistic
       });
     });
+  };
+
+  const deleteTodoHandler = (deletedItem) => {
+    setTodoItems((prevItems) =>
+      prevItems.filter((item) => item.id !== deletedItem.id)
+    );
   };
 
   return (
     <div>
       <h1 className="title">Todo List React</h1>
       <NewTodoForm onAddTodo={addTodoHandler} />
-      <TodoList items={todoItems} />
+      <TodoList items={todoItems} onDelete={deleteTodoHandler} />
     </div>
   );
 }
